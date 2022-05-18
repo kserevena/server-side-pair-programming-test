@@ -1,0 +1,41 @@
+plugins {
+    id 'application'
+    id 'jacoco'
+}
+
+group = 'com.qumu.test'
+version = '0.0.1-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+java {
+    sourceCompatibility = JavaVersion.toVersion("11")
+    targetCompatibility = JavaVersion.toVersion("11")
+}
+
+dependencies {
+    compileOnly "org.projectlombok:lombok:1.18.20"
+    annotationProcessor "org.projectlombok:lombok:1.18.20"
+
+    implementation "org.springframework.boot:spring-boot-starter:2.3.1.RELEASE"
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    testImplementation group: 'com.h2database', name: 'h2', version: '1.4.197'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+}
+
+apply plugin: 'idea'
+
+idea {
+    module {
+        downloadSources = true
+        downloadJavadoc = true
+        excludeDirs = [file('.gradle'), file(".idea"), file('build')]
+    }
+}
+
+
